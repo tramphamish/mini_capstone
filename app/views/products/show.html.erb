@@ -1,0 +1,19 @@
+<h1> Product:</h1>
+
+<h2> <%= @product.name %></h2>
+
+<img class="card-img-top" src="<%= @product.image %>">
+
+<h3> <%= @product.sale_message %> </h3>
+<p> <%= @product.description %></p>
+
+<h4> Price: <%= number_to_currency@product.price %></h4>
+<h4> Tax: <%= number_to_currency@product.sales_tax %> </h4>
+<h4> Total: <%= number_to_currency@product.total %></h4>
+
+<a class="btn btn-warning" href="/products/<%= @product.id %>/edit">Edit</a>
+<%= form_tag "/products/#{@product.id}", method: :delete do %>
+  <input type="submit" value="Delete Product">
+  <% end %>
+
+  <a href="/products">Back to all Products</a>

@@ -1,0 +1,15 @@
+<h1> View All: </h1>
+
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-8"></div>
+    <div class="card" style="width: 20rem;">
+      <img class="card-img-top" src="<%= product.image %>">
+      <div class="card-body">
+        <h4 class="card-title"> src="<%= product.name %></h4>
+    </div>
+</div>
+  <h2><a href="/products/<%= product.id %>"><%= product.name %></a></h2>
+  <h4><%= product.description %></h4>
+  <h4><%= number_to_currency product.price %></h4>
+<% end %>
