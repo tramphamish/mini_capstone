@@ -7,15 +7,15 @@ class ProductsController < ApplicationController
     render "new.html.erb"
   end
   def create
-    @new_product = Product.new(
+    @product = Product.new(
       name: params[:name], 
       price: params[:price], 
       description: params[:description], 
       image: params[:image]
       )
-    @new_product.save
+    @product.save
     flash[:success] = "New product has been successfully added."
-    redirect_to "/products/#{new_product.id}"
+    redirect_to "/products/#{@product.id}"
   end
   def show
     @product = Product.find_by(id: params[:id])
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
       image: params[:image]
       )
     flash[:success] = "Product has been successfully updated."
-    redirect_to "/products/#{@products.id}"
+    redirect_to "/products/#{@product.id}"
   end
   def destroy
     @product = Product.find_by(id: params[:id])
