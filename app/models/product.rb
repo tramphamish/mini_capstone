@@ -1,7 +1,9 @@
 class Product < ApplicationRecord
+  belongs_to :supplier
+  has_many :images
 
   def sale_message
-    if price < 2
+    if price < 30
       "Discount Item!"
     else 
       "Everyday Value!"

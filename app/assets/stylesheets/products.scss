@@ -3,11 +3,27 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body{
-  $bgDefault      : #9b59b6;
-  $bgHighlight    : #8e44ad;
-  $colDefault     : #ecf0f1;
-  $colHighlight   : #ecdbff;
-  $dropDown       : false;
+    font-family:'Bitter', serif;
+    color: black;
+    background-image: url('symphony.png');
+  }
+
+h1{
+  font-family:'Bitter', serif;
+}
+  
+  img  {
+      float: inherit;
+  }
+
+    .sale_message{
+    color: red;
+  }
+  $bgDefault      : #0a3190;
+  $bgHighlight    : #e5ecee;
+  $colDefault     : #e2eaec;
+  $colHighlight   : #c37d3c;
+  $dropDown       : true;
   .navbar {
     background-color: $bgDefault;
     .navbar-brand {
@@ -96,12 +112,4 @@ body{
     .dropdown-item.active {
       color: $colHighlight;
       background-color: $bgHighlight; }}
-
-  font-family:'Bitter', serif;
-  color: black;
-  background-image: url('symphony.png'); 
-
-  .sale_message{
-  color: red;
-  }
-}
+  

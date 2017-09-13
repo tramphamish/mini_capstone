@@ -1,18 +1,15 @@
-<h1> View All: </h1>
-
+<section>
+    <% @products.each do |product| %>
   <div class="row">
-
-  <% @products.each do |product| %>
-    <div class="col-{breakpoint}-auto">
-      <div class="card" style="width: 15rem;">
-        <img class="card-img-top" src="<%= product.image %>">
+    <div class="col-sm-8 col-sm-offset-2">
+          <div class="card" style="width: 15rem;">
+          <img class="img-fluid" alt="Responsive image" src="<%= product.images.first.image %>" alt="<%= product.name%>
           <div class="card-body">
-            <h4 class="card-title"> <%= product.name %> </h4>
-            <p class="card-text"> <%= product.description %> </p>
-            <p class="card-text"> <%= number_to_currency product.price %> </p>
-            <a href="/products/<%= product.id %>" class="btn btn-primary">Details</a>
+              <h4 class="card-title"> <%= product.name %> </h4>
+              <p class="card-text"> <%= product.description %> </p>
+              <p class="card-text"> <%= number_to_currency product.price %> </p>
+              <a href="/products/<%= product.id %>" class="btn btn-primary">Details</a>
+          </div>
         </div>
-    </div>
-    </div>
-</div>
+      </div>
 <% end %>

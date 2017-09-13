@@ -1,19 +1,27 @@
 <h1> Product:</h1>
 
-<h2> <%= @product.name %></h2>
+<section>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="single_product">
+        <h2> <%= @product.name %></h2>
+        <h3> Supplied by: <%= @product.supplier.name %> </h3>
+        
+        <% @product.images.each do |image| %>
+        <img class="img-fluid" alt="Responsive image" src="<%= image.image %>" alt="<%= @product.name %>">
+        <% end %>
 
-<img class="card-img-top" src="<%= @product.image %>">
+        <h3> <%= @product.sale_message %> </h3>
+        <p> <%= @product.description %></p>
 
-<h3> <%= @product.sale_message %> </h3>
-<p> <%= @product.description %></p>
-
-<h4> Price: <%= number_to_currency@product.price %></h4>
-<h4> Tax: <%= number_to_currency@product.sales_tax %> </h4>
-<h4> Total: <%= number_to_currency@product.total %></h4>
-
-<a class="btn btn-warning" href="/products/<%= @product.id %>/edit">Edit</a>
-<%= form_tag "/products/#{@product.id}", method: :delete do %>
-  <input type="submit" value="Delete Product">
-  <% end %>
-
-  <a href="/products">Back to all Products</a>
+        <h5> Price: <%= number_to_currency@product.price %></h5>
+        <h6> Tax: <%= number_to_currency@product.sales_tax %> </h6>
+        <h5> Total: <%= number_to_currency@product.total %></h5>
+        <%= link_to "Edit", "/products/#{@product.id}/edit", class: "btn btn-success" %>
+        <%= link_to "Add Image", "/products/#{@product.id}/images/new", class: "btn btn-info" %>
+        <%= link_to "Delete", "/products/#{@product.id}", {method: :delete, class: "btn btn-danger"}%>
+        <a href="/products">Back to all Products</a>
+        </div>
+      </div>
+    </div>
+ </section>

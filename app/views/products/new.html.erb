@@ -11,7 +11,7 @@
     Description: <input type="text" name="description">
   </div>
   <div>
-    Image: <input type="text" name="image">
+    Supplier: <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
   </div>
   <input type="submit" value="Save Product">
 <% end %>
