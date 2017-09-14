@@ -1,49 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MiniCapstoneApp</title>
+    <title>Tram's Gift Basket</title>
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
   <body>
-  <nav class="navbar navbar-toggleable-md navbar bg-faded">
+  <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="/">Tram's Gift Baskets</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/">Tram's Gift Baskets</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="navbar-text">
-          <a class="nav-link" href="/products?sort=price&sort_order=asc">Price(Asc) <span class="sr-only">(current)</span></a>
+        <li class="navbar-item dropdown">
+          <a class="nav-link dropdown-toggle" href="https://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort By:
+          </a>
+           <div clas="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+           <a class="dropdown-item" href="/products?sort=price&sort_order=asc">Price(Asc)</a>
+          <a class="dropdown-item" href="/products?sort=price&sort_order=desc">Price(Desc)</a>
+          <a class="dropdown-item" href="products?discount=true">Discount Items</a>
+          <a class="nav-link" href="products/random">Feelin' Lucky!</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/products?sort=price&sort_order=desc">Price(Desc)<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="products?discount=true">Discount Items<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="products/random">Feelin' Lucky!<span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
+
+        <% if current_user %>
+          <li class="nav-item">
+            <a class="nav-link" href="/products">Hey, <%= current_user.name %></a>
+          </li>
+          <li class="nave-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <% end %>
+          </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>
+
   <% flash.each do |name, message| %>
-  <div class="alert alert-<%=name%> alert-dismissible fade show" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  This is a success alert—check it out!
-  
-<% end %>
+    <div class="alert alert-<%=name%> alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <%= message %>
+    </div>
+  <% end %>
+
   <div class="container">
     <%= yield %>
     </div>
+
   </body>
 </html>
