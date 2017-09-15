@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     render "index.html.erb"
   end
   def new
-    render "new.html.erb"
+    render :new
   end
   def create
     supplier_id = params[:supplier]["supplier_id"]
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     else
       @product = Product.find_by(id: params[:id])
     end
-      render "show.html.erb"
+      render :show
   end
   
   def edit
