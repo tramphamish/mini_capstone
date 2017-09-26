@@ -1,16 +1,20 @@
-<h1> Signup! </h1>
-<%= form_tag "/users", method: :post do %>
+<h1>Signup!</h1>
+<%= form_tag '/users', method: :post do  %>
   <div>
-  Name: <input type="text" name="name" required="required">
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
   </div>
   <div>
-  Email: <input type="email" name="email" required="required">
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
   </div>
   <div>
-  Password: <input type="password" name="password" required="required">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
   </div>
   <div>
-  Confirm Password: <input type="password" name="password_confirmation" required="required">
+    <%= label_tag :password_confirmation %>
+    <%= password_field_tag :password_confirmation %>
   </div>
-  <input type="submit" value="Submit">
-  <% end %>
+  <%= submit_tag "Submit" %>
+<% end %>

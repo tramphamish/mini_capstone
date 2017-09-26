@@ -1,23 +1,18 @@
 <h1> Order # <%= @order.id %> </h1>
-<h3> Ordered at: <%= @order.created_at %> </h3>
+<h3> Ordered at: <%= @order.created_at.strftime("%b %e, %l:%M %p")%> </h3>
 
 <section>
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <div class="single_product">
-
 <h3>Thank you for your order <%= @order.user.name %></h3>
 <h3>E-Mail: <%= @order.user.email %></h3>
-<h3>Product Name: <%= @order.product.name %>!</h3>
-<h3>Product ID: <%= @order.product.id %></h3>
 
-  <img class="img-fluid" alt="Responsive image" src="<%= @order.image %>" alt="<%=@order.product.name %>">
-<h3>Quantity: <%= @order.quantity %> </h3>
+<% @order.carted_products.each do |carted_product| %>
+<h3>Product: <%= carted_product.product.name %></h3>
+<h4>Quantity: <%= carted_product.quantity %></h4>
+<img src="<%= carted_product.product.images.first.url %>" alt="">
+<% end %>
+
 <h3>Subtotal: <%= number_to_currency@order.subtotal %> </h3>
 <h3>Tax: <%= number_to_currency@order.tax %> </h3>
 <h3>Total: <%= number_to_currency@order.total %></h3>
 <a href="/">Back to all Products</a>
-</div>
-</div>
-</div>
 </section>

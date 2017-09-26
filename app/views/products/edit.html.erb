@@ -1,4 +1,15 @@
-<h1>Update <%= @product.name%>:</h1>
+<% if @product && @product.errors.any? %>
+  <div id="error_explanation">
+  <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from saving:</h2>
+  <ul>
+    <% @product.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <h1>Update Product:<%= @product.name%>:</h1>
 
 <%= form_tag "/products/#{@product.id}", method: :patch do %>
   <div>
@@ -11,7 +22,7 @@
     Item Description: <input type="text" name="description" value="<%= @product.description %>">
   </div>
   <div>
-    Item Image: <input type="text" name="image" value="<%= @product.image %>">
+    Item Image: <input type="text" name="image" value="<%= @product.images %>">
   </div>
   <input type="submit" value="Update">
 <% end %>

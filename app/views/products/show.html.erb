@@ -1,14 +1,12 @@
-<h1> Product:</h1>
-
 <section>
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <div class="single_product">
-        <h2> <%= @product.name %></h2>
-        <h3> Supplied by: <%= @product.supplier.name %> </h3>
+        <h1> <%= @product.name %></h1>
+        <h6> Supplied by: <%= @product.supplier.name %> </h6>
         
         <% @product.images.each do |image| %>
-        <img class="img-fluid" alt="Responsive image" src="<%= image.image %>" alt="<%= @product.name %>">
+        <img class="img-fluid" alt="Responsive image" src="<%= image.url %>" alt="<%= @product.name %>">
         <% end %>
 
         <h3> <%= @product.sale_message %> </h3>
@@ -17,9 +15,22 @@
         <h5> Price: <%= number_to_currency@product.price %></h5>
         <h6> Tax: <%= number_to_currency@product.sales_tax %> </h6>
         <h5> Total: <%= number_to_currency@product.total %></h5>
+
+        <% if current_user && current_user.admin %>
         <%= link_to "Edit", "/products/#{@product.id}/edit", class: "btn btn-success" %>
         <%= link_to "Add Image", "/products/#{@product.id}/images/new", class: "btn btn-info" %>
         <%= link_to "Delete", "/products/#{@product.id}", {method: :delete, class: "btn btn-danger"}%>
+        <% end %>
+        
+        <%= form_tag "/carted_products", method: :post do %>
+          <div>
+            <%=hidden_field_tag :product_id, @product.id %>
+          </div>
+          <div>
+            Quantity: <input type="quantity" name="quantity">
+          </div>
+          <input type="submit" value="Add to Cart", class="btn btn-success">
+          <% end %>
         <a href="/products">Back to all Products</a>
         </div>
       </div>

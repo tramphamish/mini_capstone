@@ -1,0 +1,19 @@
+<h1> Your Shopping Cart:</h1>
+  <div class="row">
+    <% @carted_products.each do |carted_product| %>
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="card" style="width: 15rem;">
+          <img class="img-fluid" alt="Responsive image" src="<%= carted_product.product.images.first.url %>" alt="<%= carted_product.product.name%>">
+          <div class="card-body">
+              <h4 class="card-title"> <%= carted_product.product.name %> </h4>
+              <p class="card-text"> <%= carted_product.quantity %> </p>
+              <p class="card-text"> <%= number_to_currency carted_product.product.price %> </p>
+              <%= link_to "Remove", "/carted_product/#{carted_product.id}", method: :delete %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+      <%= form_tag "/orders/", method: :post do %>
+
+      <%=submit_tag "Check Out"%>
+<% end %>

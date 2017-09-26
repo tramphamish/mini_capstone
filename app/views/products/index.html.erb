@@ -1,9 +1,12 @@
+<p> You have visited this page <%= @visist_count %> times!</p>
+
 <section>
-    <% @products.each do |product| %>
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <% @products.each do |product| %>
+
+    <div class="col-sm-4">
           <div class="card" style="width: 15rem;">
-          <img class="img-fluid" alt="Responsive image" src="<%= product.images.first.image %>" alt="<%= product.name%>">
+          <img class="img-fluid" alt="Responsive image" src="<%= product.images.first.url %>" alt="<%= product.name%>">
           <div class="card-body">
               <h4 class="card-title"> <%= product.name %> </h4>
               <p class="card-text"> <%= product.description %> </p>
@@ -13,3 +16,5 @@
         </div>
       </div>
 <% end %>
+</div>
+</section>
